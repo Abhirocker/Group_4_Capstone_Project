@@ -1,0 +1,16 @@
+div.a {
+    text-align: justify;
+    margin: 20px;
+    font-size: medium;
+  }
+  th{
+    font-size: large;
+  }
+  h1{
+    padding-top: 10px;
+    font-weight: bold;
+  }
+button{
+  font-size: large;
+  background-color: rgb(34,172,252);
+}

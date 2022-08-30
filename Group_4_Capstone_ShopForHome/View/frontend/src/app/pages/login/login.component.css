@@ -1,0 +1,29 @@
+*{
+    overflow: hidden;
+
+}
+
+.float{
+    position: center;
+    padding-left: 230px;
+    padding-top: 170px;
+}
+
+label{
+    font-size: 15px;
+}
+.form-control,.btn,.message{
+    width: 60%;
+    border-radius: 20px;
+}
+h1{
+    margin-left: -250px;
+}
+#remember_me{
+    font-size: 15px;
+    font-weight: 600;
+    font-style: italic;
+}
+div{
+    font-size: large;
+}

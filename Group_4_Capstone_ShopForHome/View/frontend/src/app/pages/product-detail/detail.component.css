@@ -1,0 +1,24 @@
+.fa-heart {
+    color :rgb(244, 25, 25);
+    cursor : pointer;
+}    
+.details{
+   
+    margin-left: 25%;
+    height: 50%;
+    width: 50%;
+    border-radius: 39px;
+}
+.details img{
+    height: 100%;
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;   
+}
+.sizer{
+    font-size: 15px;
+}
+.het{
+    position: absolute;
+    right: 20px;
+}

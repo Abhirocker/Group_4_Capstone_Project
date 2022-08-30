@@ -1,0 +1,85 @@
+<nav height="40%" widht="100%" class="navbar navbar-expand-lg">
+    <a class="navbar-brand" [routerLink]="root">
+        <img src="https://media.istockphoto.com/vectors/shopping-cart-icon-design-cart-icon-symbol-design-vector-id1138644570?b=1&k=20&m=1138644570&s=612x612&w=0&h=Mm_3XMrMhyJGgesGU0N2ver8dpQVxrVo71Az0LCPu1k=" width="50" height="50" class="d-inline-block align-center" alt="">
+        <span class="p-3 d-inline-block text-dark font-italic"><h3>ShopForHome</h3> </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="navbar-nav " *ngIf="!currentUser || currentUser.role == Role.Customer">
+
+            <a class=" h3 nav-item nav-link my-md-4 px-3"
+               routerLink="/category/0">
+               <img src="https://img.freepik.com/premium-vector/furniture-logo-template-design_23-2148633672.jpg?w=2000" width="50" height="50"  alt="">
+               Furniture
+            </a>
+            <a class="h3 nav-item nav-link my-md-4 px-3"
+               routerLink="/category/1">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZUZaMIcq1u0qPbZyLGeFgVwZ2wvjeg1E0pg&usqp=CAU" width="50" height="50" alt="">
+               Garden & Outdoor
+            </a>
+            <a class="h3 nav-item nav-link my-md-4 px-3"
+               routerLink="/category/2">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGt6CtJ579cSVPB4HC37yWwZuacsKpaaA76g&usqp=CAU" width="50" height="50" alt="">
+               Wall Decorations
+            </a>
+            <a class="h3 nav-item nav-link my-md-4 px-3"
+               routerLink="/category/3">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUIgHrMyP6CIkAGeNE24WFezLqEKwylXOhug&usqp=CAU" width="50" height="50" alt="">
+               Lighting
+            </a>
+
+           
+
+        </div>
+
+        
+
+        <div class="navbar-nav ml-auto">
+            <a *ngIf="!currentUser || currentUser.role == Role.Customer"
+                    class="h3 nav-item nav-link my-md-4 px-3" routerLink="/cart">
+                <i class="fas fa-shopping-cart"></i>
+                
+            </a>
+
+            <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Manager">
+
+                <a class="h3 nav-item nav-link my-md-4 px-3"  routerLink="/discount">Discount</a>
+                <a class="h3 nav-item nav-link my-md-4 px-3" (click)=getUsers() routerLink="/admin/user">Users</a>
+                <a class="h3 nav-item nav-link my-md-4 px-3" routerLink="/seller/product">Stocks</a>
+            </div>
+
+            <div class="navbar-nav" *ngIf="currentUser && currentUser.role == Role.Customer">
+                <a class="h3 nav-item nav-link my-md-4 px-3"  routerLink="/wishlist">Wishlist</a>
+            </div>
+
+            <ng-container *ngIf="currentUser; else noUser">
+                
+               
+                <a class="h3 nav-item nav-link my-md-4 px-3" routerLink="/order">
+                    <i class="fas fa-list-ul"></i>
+                    Orders
+                </a>
+                <a class="h3 nav-item nav-link my-md-4 px-3" routerLink="/profile">
+                    {{name}}
+                </a>
+                <a class="h3 nav-item nav-link my-md-4 px-3" (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                    Sign Out
+                </a>
+            </ng-container>
+            <ng-template #noUser>
+                <a class="h3 nav-item nav-link my-md-4 px-3" routerLink="/login">
+                    Log In
+                </a>
+                <a class="h3 nav-item nav-link my-md-4 px-3" routerLink="/register">
+                    Sign Up
+                </a>
+            </ng-template>
+            
+            </div>
+    </div>
+</nav>

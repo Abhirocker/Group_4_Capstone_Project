@@ -1,0 +1,10 @@
+.pagination li a{
+    border-radius: 5%;
+    margin: 13px;
+}
+button{
+    border-radius: 10%;
+}
+a{
+    font-size: large;
+}

@@ -1,0 +1,61 @@
+<h1 align="center" class="display-4 ">Products</h1>
+<a *ngIf="currentUser?.role == Role.Customer" style="color: inherit"
+   routerLink="/seller/product/new" class="float-right mb-3"><i class="fas fa-plus fa-2x">Add</i>
+</a>
+<button (click)="exportAsXLSX()" class="float-right mb-3">
+    <i class="fa fa-download" aria-hidden="true" style="font-size:42px;color:blue"></i></button>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <h3>For Bulk Upload Enter .csv file</h3>
+<input class="form-control" type="file" 
+            (change)="onChange($event)">
+  </form>
+    <button (click)="onUpload()" 
+        class="btn btn-success ">
+        Upload
+    </button>
+
+
+<table id="table" class="table table-striped text-center" style="width:100%;">
+    <thead>
+    <tr>
+        <th scope="col" class="h3">Photo</th>
+        <th scope="col" class="h3">Id</th>
+        <th scope="col" class="h3">Name</th>
+        <th scope="col" class="h3">Type</th>
+        <th scope="col" class="h3">Description</th>
+        <th scope="col" class="h3">Price</th>
+        <th scope="col" class="h3">Stock</th>
+        <th scope="col" class="h3">Status</th>
+        <th scope="col" class="h3">Action</th>
+        <th scopr="col" class="h3">Mail</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr *ngFor="let productInfo of page?.content | filter:searchText">
+        <th class="align-middle h2" scope="row">
+            <img height="100px" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+        </th>
+        <td class="align-middle h2">{{productInfo.productId}}</td>
+        <td class="align-middle h2">{{productInfo.productName}}</td>
+        <td class="align-middle h2">{{CategoryType[productInfo.categoryType]}}</td>
+        <td class="align-middle h2">{{productInfo.productDescription}}</td>
+        <td class="align-middle h2">{{productInfo.productPrice | currency: 'INR'}}</td>
+        <td class="align-middle h2">{{productInfo.productStock}}</td>
+        <td class="align-middle h2">{{ProductStatus[productInfo.productStatus]}}</td>
+        <td class="align-middle h2">
+            <a style="display: block" routerLink="/seller/product/{{productInfo.productId}}/edit">
+                Edit</a>
+
+            <a *ngIf="currentUser?.role == Role.Customer" style="display: block"
+               (click)="remove(page.content, productInfo.productId)" routerLink="./">
+                Remove</a>
+        </td>
+        <td class="align-middle h2">
+            <button (click)=onSubmit() [disabled]="(productInfo.productStock >10)? true:false" class="btn btn-success">email</button>
+           <!-- <a  [ngClass]="{'isDisabled':'(productInfo.productStock >10)? true:false'}"style="display: block" class="isDisabled"  routerLink="/email">Email</a>-->
+        </td>
+
+    </tbody>
+</table>
+<app-pagination [currentPage]="page"></app-pagination>

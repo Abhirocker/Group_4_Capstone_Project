@@ -1,0 +1,11 @@
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+  .desc{
+    height: 20px;
+  }
+
+  

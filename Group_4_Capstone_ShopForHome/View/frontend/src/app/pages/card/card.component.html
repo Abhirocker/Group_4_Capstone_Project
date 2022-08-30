@@ -1,0 +1,30 @@
+<div>
+  <h1 align="center" class="font-italic display-4 mb-5"><b>{{title}}</b></h1>
+
+  <div align="right">
+    <input type="text" align="left" class="searching" name="search" [(ngModel)]="searchText"
+      placeholder="Search....." />
+  </div>
+</div>
+
+<div class="row card-deck text-center container-fluid view">
+  <div *ngFor="let productInfo of page?.content | filter:searchText" class="col-lg-4 ">
+    <div class="card  prodetails">
+      <img height="50%" class="card-img-top" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+      <div class="card-body">
+        <h3 class="card-title">{{productInfo.productName}}</h3>
+
+        <div class="h4 text-left">
+          <p class="card-test"><strong>Description: </strong>{{productInfo.productDescription}}</p>
+          <p class="card-text"><strong>Price : </strong>{{productInfo.productPrice | currency: 'INR'}}</p>
+          <p class="card-text"><strong>Available Item: </strong>{{productInfo.productStock}}</p>
+        </div>
+        <br>
+        <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock"
+          class="btn btn-primary btn-lg">Order It</a>
+        <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<app-pagination [currentPage]="page"></app-pagination>

@@ -1,0 +1,30 @@
+<h1 align="center" class="display-4 ">Users</h1>
+
+
+    <br>
+<table id="table" class="table table-striped text-center" style="width:100%;">
+    <thead>
+    <tr>
+        <th scope="col" class="h2">Email</th>
+        <th scope="col" class="h2">Name</th>
+        <th scope="col" class="h2">Role</th>
+        <th scope="col" class="h2">Action</th>
+        
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr *ngFor="let user of page?.content | filter:searchText">
+        
+        <td class="align-middle h3">{{user.email}}</td>
+        <td class="align-middle h3">{{user.name}}</td>
+        <td class="align-middle h3">{{user.role}}</td>
+        <td class="align-middle h3">
+            <button  *ngIf="user.role=='ROLE_CUSTOMER'" (click)=addAdmin(user.email)  class="btn btn-success">Add Admin</button>
+            <button  *ngIf="user.role=='ROLE_MANAGER'" (click)=removeAdmin(user.email)  class="btn btn-success">Remove</button>
+
+        </td>
+
+    </tbody>
+</table>
+<app-pagination [currentPage]="page"></app-pagination>
